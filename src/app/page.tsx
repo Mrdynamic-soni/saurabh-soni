@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   FaHome,
   FaRegFilePdf,
@@ -27,6 +27,8 @@ import Footer from "@/components/organisms/Footer";
 
 const Home: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
+  const isClickingRef = useRef(false);
 
   const menuItems = [
     {
@@ -80,12 +82,44 @@ const Home: React.FC = () => {
   ];
 
   const scrollToSection = (id: string) => {
+    setActiveSection(id); // Set active section immediately on click
+    isClickingRef.current = true; // Mark as manually clicked
     const section = document.getElementById(id || "home");
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
-      setIsMenuOpen(false);
+
+      // Reset click flag after scrolling animation
+      setTimeout(() => {
+        isClickingRef.current = false;
+      }, 500); // Adjust the timeout duration based on scroll speed
     }
+    setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!isClickingRef.current) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(entry.target.id); // Update state only when not clicking
+            }
+          });
+        }
+      },
+      {
+        threshold: 0.5, // Adjust based on when you want the section to be considered active
+      }
+    );
+
+    menuItems.forEach((item) => {
+      const section = document.getElementById(item.id);
+      if (section) observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, [menuItems]);
+  console.log(activeSection, "././././");
 
   return (
     <>
@@ -104,7 +138,7 @@ const Home: React.FC = () => {
       </div>
 
       <nav
-        className={`fixed left-0 top-0 h-screen w-52 flex flex-col items-center bg-gray-900 text-white py-4 space-y-4 shadow-lg px-4 transform ${
+        className={`fixed left-0 top-0 h-screen w-52 flex flex-col items-center bg-gray-900 text-white py-4 space-y-4 shadow-lg  transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 md:translate-x-0 z-40 pt-16 overflow-y-auto overflow-x-hidden`}
         style={{ maxHeight: "100vh" }}
@@ -114,8 +148,8 @@ const Home: React.FC = () => {
             "https://avatars.githubusercontent.com/u/61721761?s=400&u=3ca59ad71b95db0f87427648f33308e0c0d03f2a&v=4"
           }
           alt="profil"
-          width={200}
-          height={200}
+          width={150}
+          height={150}
           className="rounded-full mx-6 border-8"
           style={{
             borderColor: theme?.colors?.surface?.secondary,
@@ -130,12 +164,22 @@ const Home: React.FC = () => {
           <button
             key={item.id}
             onClick={() => scrollToSection(item.id)}
-            className="flex gap-x-2 items-center justify-start py-2 w-full focus:outline-none group"
+            className={`flex gap-x-2 items-center justify-start py-3 px-4 w-full focus:outline-none group ${
+              activeSection === item.id ? "bg-gray-700 " : "text-gray-500"
+            }`}
           >
-            <span className="text-lg text-gray-500 group-hover:text-white group-focus:text-white transition-colors duration-300">
+            <span
+              className={`text-lg group-hover:text-white  transition-colors duration-300 ${
+                activeSection === item.id ? "text-white" : "text-gray-500"
+              }`}
+            >
               {item.icon}
             </span>
-            <span className="text-xs text-gray-500 group-hover:text-white group-focus:text-white transition-colors duration-300">
+            <span
+              className={`text-xs group-hover:text-white  transition-colors duration-300 ${
+                activeSection === item.id ? "text-white" : "text-gray-500"
+              }`}
+            >
               {item.label}
             </span>
           </button>

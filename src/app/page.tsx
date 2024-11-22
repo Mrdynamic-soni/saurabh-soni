@@ -18,6 +18,11 @@ import Heading from "@/components/typography/Heading";
 import HeroSection from "@/components/organisms/Herosection";
 import About from "@/components/organisms/About";
 import Skills from "@/components/organisms/Skills";
+import WorkExperienceSection from "@/components/organisms/WorkExperience";
+import ServicesSection from "@/components/organisms/Services";
+import PortfolioSection from "@/components/organisms/Porfolio";
+import ResourcesSection from "@/components/organisms/Resources";
+import ContactSection from "@/components/organisms/Contact";
 
 // Dummy Component for future scope
 const DummyComponent = ({ title }: { title: string }) => (
@@ -46,6 +51,13 @@ const Home: React.FC = () => {
       component: <About />,
     },
     {
+      id: "workexperience",
+      label: "Work Experience",
+      icon: <FaRegImages />,
+      component: <WorkExperienceSection />,
+    },
+
+    {
       id: "skills",
       label: "Skills",
       icon: <FaLaptopCode />,
@@ -55,25 +67,25 @@ const Home: React.FC = () => {
       id: "services",
       label: "Services",
       icon: <FaServer />,
-      component: <HeroSection />,
+      component: <ServicesSection />,
     },
     {
       id: "portfolio",
       label: "Portfolio",
       icon: <FaRegImages />,
-      component: <HeroSection />,
+      component: <PortfolioSection />,
     },
     {
       id: "resources",
       label: "Resources",
       icon: <FaRegFilePdf />,
-      component: <HeroSection />,
+      component: <ResourcesSection />,
     },
     {
       id: "contact",
       label: "Contact",
       icon: <LuContact2 />,
-      component: <HeroSection />,
+      component: <ContactSection />,
     },
   ];
 

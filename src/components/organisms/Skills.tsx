@@ -21,19 +21,79 @@ const Skills = () => {
       level: 90,
     },
     {
-      name: "JAVASCRIPT",
-      level: 75,
+      name: "JavaScript",
+      level: 85,
     },
     {
-      name: "PHP",
+      name: "TypeScript",
       level: 80,
     },
     {
-      name: "WORDPRESS/CMS",
+      name: "Python",
+      level: 80,
+    },
+    {
+      name: "C++",
+      level: 70,
+    },
+    {
+      name: "React.js",
+      level: 85,
+    },
+    {
+      name: "React Native",
       level: 90,
     },
     {
-      name: "PHOTOSHOP",
+      name: "Node.js",
+      level: 75,
+    },
+    {
+      name: "Express.js",
+      level: 75,
+    },
+    {
+      name: "Nest.js",
+      level: 70,
+    },
+    {
+      name: "PostgreSQL",
+      level: 70,
+    },
+    {
+      name: "AWS",
+      level: 80,
+    },
+    {
+      name: "MySQL",
+      level: 75,
+    },
+    {
+      name: "Git",
+      level: 80,
+    },
+    {
+      name: "Flask",
+      level: 60,
+    },
+    {
+      name: "Bootstrap",
+      level: 70,
+    },
+    {
+      name: "Material-UI",
+      level: 75,
+    },
+    {
+      name: "MongoDB",
+      level: 70,
+    },
+    {
+      name: "WordPress/CMS",
+      level: 90,
+    },
+    {
+      name: "Photoshop",
       level: 55,
     },
   ];

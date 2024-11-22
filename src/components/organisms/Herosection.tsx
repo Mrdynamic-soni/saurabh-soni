@@ -21,10 +21,8 @@ const HeroSection: React.FC = () => {
       setCurrentText(updatedText);
 
       if (!isDeleting && updatedText === currentRole) {
-        // Pause before deleting
         setTimeout(() => setIsDeleting(true), 1000);
       } else if (isDeleting && updatedText === "") {
-        // Move to the next word
         setIsDeleting(false);
         setLoopIndex(loopIndex + 1);
       }
@@ -38,32 +36,23 @@ const HeroSection: React.FC = () => {
 
   return (
     <div className="relative h-screen bg-gray-900">
-      {/* Background Image */}
       <Image
         src={Me}
         alt="Background Image"
         className="object-cover w-full h-full opacity-30"
         priority
       />
-
-      {/* Content Section */}
       <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 text-white px-4 text-center">
-        {/* Name Heading */}
         <Heading
           heading="Saurabh Soni"
-          className="text-4xl md:text-6xl text-white"
-          fontWeight="font-bold"
+          className="text-4xl md:text-6xl text-white font-bold"
         />
 
-        {/* Typing Effect */}
         <div className="flex flex-wrap justify-center md:justify-start items-center gap-x-2">
-          {/* Static Heading */}
           <Heading
             heading="I'm a"
-            className="text-3xl md:text-4xl font-semibold text-white"
+            className="text-3xl md:text-4xl text-white font-semibold"
           />
-
-          {/* Typing Effect */}
           <div className="text-3xl md:text-4xl font-medium text-white">
             <span className="text-sky-600 font-bold border-b-2 border-sky-600">
               {currentText}
@@ -73,7 +62,6 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Additional Tailwind CSS */}
       <style jsx>{`
         @keyframes blink {
           0% {

@@ -1,4 +1,3 @@
-// components/Skills.tsx
 import React, { useEffect, useState } from "react";
 
 // Define the structure of a skill
@@ -10,7 +9,7 @@ interface Skill {
 const Skills = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
 
-  // Skills data defined directly inside the component (similar to a JSON structure)
+  // Skills data defined directly inside the component (updated based on your details)
   const skillsData: Skill[] = [
     {
       name: "HTML",
@@ -126,26 +125,25 @@ const Skills = () => {
   return (
     <section
       id="skills-section"
-      className="min-h-screen py-12 px-6 md:px-16 bg-gray-50"
+      className="min-h-screen py-12 px-6 md:px-16 bg-gray-800 text-white"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 inline-block">
+        <h2 className="text-3xl font-bold text-gray-100 mb-6 border-b-4 border-blue-500 inline-block">
           Skills
         </h2>
-        <p className="mb-6 text-lg text-gray-700">
-          Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-          consectetur velit.
+        <p className="mb-6 text-lg text-gray-300">
+          Here are some of the technologies and tools I am proficient in.
         </p>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill) => (
             <div key={skill.name} className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-md text-gray-900 font-semibold">
+                <span className="text-md text-gray-100 font-semibold">
                   {skill.name}
                 </span>
-                <span className="text-sm text-gray-500">{skill.level}%</span>
+                <span className="text-sm text-gray-300">{skill.level}%</span>
               </div>
-              <div className="w-full h-2 bg-gray-200 rounded-full">
+              <div className="w-full h-2 bg-gray-600 rounded-full">
                 <div
                   className={`h-full bg-blue-500 rounded-full ${
                     inView ? "transition-all duration-1000" : "w-0"

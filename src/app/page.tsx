@@ -24,6 +24,9 @@ import PortfolioSection from "@/components/organisms/Porfolio";
 import ResourcesSection from "@/components/organisms/Resources";
 import ContactSection from "@/components/organisms/Contact";
 import Footer from "@/components/organisms/Footer";
+import SAURABH from "../app/assests/Images/saurabh.jpeg";
+import EducationSection from "@/components/organisms/Eduction";
+import { GiBookshelf } from "react-icons/gi";
 
 const Home: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,6 +51,12 @@ const Home: React.FC = () => {
       label: "Work Experience",
       icon: <FaRegImages />,
       component: <WorkExperienceSection />,
+    },
+    {
+      id: "education",
+      label: "Education",
+      icon: <GiBookshelf />,
+      component: <EducationSection />,
     },
     {
       id: "skills",
@@ -82,16 +91,15 @@ const Home: React.FC = () => {
   ];
 
   const scrollToSection = (id: string) => {
-    setActiveSection(id); // Set active section immediately on click
-    isClickingRef.current = true; // Mark as manually clicked
+    setActiveSection(id);
+    isClickingRef.current = true;
     const section = document.getElementById(id || "home");
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
 
-      // Reset click flag after scrolling animation
       setTimeout(() => {
         isClickingRef.current = false;
-      }, 500); // Adjust the timeout duration based on scroll speed
+      }, 500);
     }
     setIsMenuOpen(false);
   };
@@ -102,13 +110,13 @@ const Home: React.FC = () => {
         if (!isClickingRef.current) {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              setActiveSection(entry.target.id); // Update state only when not clicking
+              setActiveSection(entry.target.id);
             }
           });
         }
       },
       {
-        threshold: 0.5, // Adjust based on when you want the section to be considered active
+        threshold: 0.5,
       }
     );
 
@@ -119,11 +127,9 @@ const Home: React.FC = () => {
 
     return () => observer.disconnect();
   }, [menuItems]);
-  console.log(activeSection, "././././");
 
   return (
     <>
-      {/* Hamburger Menu for Mobile and Tablet */}
       <div className="fixed top-0 left-0 z-50 w-full bg-gray-900 text-white flex items-center px-4 py-3 md:hidden">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -144,9 +150,7 @@ const Home: React.FC = () => {
         style={{ maxHeight: "100vh" }}
       >
         <Image
-          src={
-            "https://avatars.githubusercontent.com/u/61721761?s=400&u=3ca59ad71b95db0f87427648f33308e0c0d03f2a&v=4"
-          }
+          src={SAURABH}
           alt="profil"
           width={150}
           height={150}
@@ -155,11 +159,7 @@ const Home: React.FC = () => {
             borderColor: theme?.colors?.surface?.secondary,
           }}
         />
-        <Heading
-          heading="Saurabh Soni"
-          className="text-2xl"
-          fontWeight="font-bold"
-        />
+        <Heading heading="Saurabh Soni" className="text-2xl font-bold" />
         {menuItems.map((item) => (
           <button
             key={item.id}
@@ -197,7 +197,6 @@ const Home: React.FC = () => {
         </section>
       </main>
 
-      {/* Hire Me Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => scrollToSection("contact")}

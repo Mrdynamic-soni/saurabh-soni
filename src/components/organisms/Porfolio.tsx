@@ -37,8 +37,8 @@ const portfolioData = [
 
 const PortfolioSection = () => {
   return (
-    <div className="min-h-screen py-12 px-6 md:px-16 bg-white">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 inline-block">
+    <div className="min-h-screen py-12 px-6 md:px-16 bg-gray-900 text-white">
+      <h2 className="text-3xl font-bold text-gray-200 mb-6 border-b-4 border-blue-500 inline-block">
         My Portfolio
       </h2>
 
@@ -46,21 +46,21 @@ const PortfolioSection = () => {
         {portfolioData.map((project, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl"
+            className="bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl"
           >
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+            <h3 className="text-xl font-semibold text-gray-200 mb-2">
               {project.title}
             </h3>
-            <p className="text-gray-600 mb-4">{project.description}</p>
+            <p className="text-gray-400 mb-4">{project.description}</p>
             <div className="mb-4">
-              <h4 className="font-semibold text-gray-700 mb-2">
+              <h4 className="font-semibold text-gray-300 mb-2">
                 Technologies Used:
               </h4>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800"
+                    className="px-3 py-1 text-xs rounded-full bg-blue-900 text-blue-200"
                   >
                     {tech}
                   </span>
@@ -73,7 +73,7 @@ const PortfolioSection = () => {
                 href={project.githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800"
+                className="text-blue-400 hover:text-blue-600"
               >
                 <FaGithub size={20} />
               </a>
@@ -81,7 +81,7 @@ const PortfolioSection = () => {
                 href={project.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-green-600 hover:text-green-800"
+                className="text-green-400 hover:text-green-600"
               >
                 <FaLink size={20} />
               </a>
@@ -89,7 +89,7 @@ const PortfolioSection = () => {
                 href={project.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-600 hover:text-gray-800"
+                className="text-gray-400 hover:text-gray-600"
               >
                 <FaEye size={20} />
               </a>

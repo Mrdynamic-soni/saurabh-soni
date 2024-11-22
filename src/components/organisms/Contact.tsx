@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
+    sendToWhatsApp();
     console.log("Form submitted:", formData);
   };
 
@@ -193,9 +193,30 @@ const Contact: React.FC = () => {
     },
   ];
 
+  const sendToWhatsApp = () => {
+    const phoneNumber = "+917234869244";
+    const { message } = formData; // Get the message from form data
+    const encodedMessage = encodeURIComponent(message); // Encode the message to handle special characters
+
+    const mobileLink = `whatsapp://send?phone=${phoneNumber}&text=${encodedMessage}`;
+    const webLink = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+    const desktopLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    if (
+      typeof navigator !== "undefined" &&
+      /android|iphone|ipad|ipod/i.test(navigator.userAgent)
+    ) {
+      window.open(mobileLink, "_self");
+    } else if (navigator.userAgent.includes("WhatsApp")) {
+      window.open(desktopLink, "_self");
+    } else {
+      window.open(webLink, "_blank");
+    }
+  };
+
   return (
-    <div className="min-h-screen py-12 px-6 md:px-16 bg-white">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 inline-block">
+    <div className="min-h-screen py-12 px-6 md:px-16 bg-gray-900 text-white">
+      <h2 className="text-3xl font-bold text-white mb-6 border-b-4 border-blue-500 inline-block">
         Contact
       </h2>
       <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-6 sm:gap-8">
@@ -203,11 +224,11 @@ const Contact: React.FC = () => {
           {socialMediaPlatforms.map((item) => (
             <button
               key={item.id}
-              className="flex justify-center items-center gap-x-4 px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 hover:bg-opacity-80"
+              className="flex justify-center items-center gap-x-4 px-3 py-2 mb-4 rounded-full transition-all duration-300 hover:scale-105 hover:bg-opacity-80 bg-gray-700"
               onClick={item.onPressAction}
               aria-label={`Visit ${item.platform}`}
             >
-              <div className="bg-gray-300 p-3 rounded-full">
+              <div className="bg-gray-500 p-2 rounded-full">
                 <Image
                   src={item.icon}
                   height={24}
@@ -217,7 +238,7 @@ const Contact: React.FC = () => {
                 />
               </div>
               {/* Hide the text on small screens */}
-              <span className="hidden sm:inline-block text-gray-800 text-sm sm:text-base">
+              <span className="hidden sm:inline-block text-white text-sm sm:text-base">
                 {item.platform}
               </span>
             </button>
@@ -225,7 +246,7 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="mt-8 w-full sm:w-1/2">
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h3 className="text-2xl font-semibold text-white mb-4">
             Send a Message
           </h3>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -235,7 +256,7 @@ const Contact: React.FC = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Your Name"
-              className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-3 border border-gray-700 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
             />
             <input
               type="email"
@@ -243,14 +264,14 @@ const Contact: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Your Email"
-              className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-3 border border-gray-700 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
             />
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               placeholder="Your Message"
-              className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="p-3 border border-gray-700 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               rows={6}
             />
             <button

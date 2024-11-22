@@ -3,19 +3,11 @@ import React, { FC, HTMLAttributes } from "react";
 
 interface HeadingProps extends HTMLAttributes<HTMLParagraphElement> {
   heading: string;
-  fontSize?: "text-sm" | "text-base" | "text-lg";
-  fontWeight?: "font-light" | "font-normal" | "font-bold";
 }
 
-const Heading: FC<HeadingProps> = ({
-  heading,
-  fontSize = "text-base",
-  fontWeight = "font-normal",
-  className = "",
-  ...rest
-}) => {
+const Heading: FC<HeadingProps> = ({ heading, className = "", ...rest }) => {
   return (
-    <p className={`${fontSize} ${fontWeight} ${className}`} {...rest}>
+    <p className={`${className}`} {...rest}>
       {heading}
     </p>
   );

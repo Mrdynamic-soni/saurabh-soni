@@ -4,6 +4,7 @@ import {
   FaCloud,
   FaUsers,
   FaChalkboardTeacher,
+  FaRobot,
 } from "react-icons/fa";
 
 const servicesData = [
@@ -49,12 +50,25 @@ const servicesData = [
     icon: <FaUsers size={40} className="text-blue-500" />,
     skills: ["React", "Material-UI", "CSS", "Bootstrap", "HTML5"],
   },
+  {
+    title: "IoT, Robotics & Drones",
+    description:
+      "Developed IoT solutions, robotics systems, and drone applications, integrating hardware and software to create intelligent, automated systems.",
+    icon: <FaRobot size={40} className="text-blue-500" />,
+    skills: [
+      "Arduino",
+      "Raspberry Pi",
+      "Sensors",
+      "Robotics",
+      "Drone Technology",
+    ],
+  },
 ];
 
 const ServicesSection = () => {
   return (
-    <div className="min-h-screen py-12 px-6 md:px-16 bg-gray-50 dark:bg-gray-900">
-      <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6 border-b-4 border-blue-500 inline-block">
+    <div className="min-h-screen py-12 px-6 md:px-16 bg-gray-50">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 inline-block">
         Services
       </h2>
 
@@ -62,27 +76,23 @@ const ServicesSection = () => {
         {servicesData.map((service, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-300 hover:shadow-lg"
+            className="bg-white rounded-lg shadow-md p-6 transition-all duration-300 hover:shadow-lg"
           >
             <div className="flex items-center mb-4">
               {service.icon}
-              <h3 className="ml-4 text-xl font-semibold text-gray-800 dark:text-white">
+              <h3 className="ml-4 text-xl font-semibold text-gray-800">
                 {service.title}
               </h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              {service.description}
-            </p>
+            <p className="text-gray-600 mb-4">{service.description}</p>
 
             <div>
-              <h4 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
-                Technologies
-              </h4>
+              <h4 className="font-semibold text-gray-700 mb-2">Technologies</h4>
               <div className="flex flex-wrap gap-2">
                 {service.skills.map((skill, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                    className="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800"
                   >
                     {skill}
                   </span>

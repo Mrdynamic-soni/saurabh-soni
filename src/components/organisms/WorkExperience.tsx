@@ -182,7 +182,7 @@ const WorkExperienceSection = () => {
     : workExperienceData.slice(0, 3); // Show all or the first 3 experiences
 
   return (
-    <div className="min-h-screen py-12 px-6 md:px-16">
+    <div className="min-h-screen py-12  px-6 md:px-16">
       <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 inline-block dark:text-white">
         Work Experience
       </h2>

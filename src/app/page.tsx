@@ -57,7 +57,6 @@ const Home: React.FC = () => {
       icon: <FaRegImages />,
       component: <WorkExperienceSection />,
     },
-
     {
       id: "skills",
       label: "Skills",
@@ -163,6 +162,16 @@ const Home: React.FC = () => {
           <Footer />
         </section>
       </main>
+
+      {/* Hire Me Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => scrollToSection("contact")}
+          className="bg-gray-800 text-white border-2 border-gray-600 rounded-full w-16 h-16 flex items-center justify-center shadow-lg hover:bg-gray-700 focus:outline-none transition-transform duration-300 hover:scale-105"
+        >
+          <span className="text-sm font-bold p-2">Hire me</span>
+        </button>
+      </div>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaBriefcase, FaCalendar, FaMapPin } from "react-icons/fa";
+import { FaCalendar, FaMapPin } from "react-icons/fa";
 
 const workExperienceData = [
   {

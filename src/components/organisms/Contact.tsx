@@ -174,7 +174,7 @@ const Contact: React.FC = () => {
       platform: "Telegram",
       icon: TELEGRAM_LOGO,
       onPressAction: () => {
-        window.open("https://www.telegram.org", "_blank");
+        sendMessageToTelegram();
       },
     },
     {

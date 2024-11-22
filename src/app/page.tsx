@@ -25,16 +25,6 @@ import ResourcesSection from "@/components/organisms/Resources";
 import ContactSection from "@/components/organisms/Contact";
 import Footer from "@/components/organisms/Footer";
 
-// Dummy Component for future scope
-const DummyComponent = ({ title }: { title: string }) => (
-  <div
-    id={title.toLowerCase()}
-    className="h-screen flex items-center justify-center bg-gray-100 text-gray-800"
-  >
-    <h1 className="text-4xl font-bold">{title}</h1>
-  </div>
-);
-
 const Home: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

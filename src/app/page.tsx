@@ -116,7 +116,8 @@ const Home: React.FC = () => {
       <nav
         className={`fixed left-0 top-0 h-screen w-52 flex flex-col items-center bg-gray-900 text-white py-4 space-y-4 shadow-lg px-4 transform ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 md:translate-x-0 z-40 pt-16`}
+        } transition-transform duration-300 md:translate-x-0 z-40 pt-16 overflow-y-auto overflow-x-hidden`}
+        style={{ maxHeight: "100vh" }}
       >
         <Image
           src={

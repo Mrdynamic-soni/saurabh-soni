@@ -23,6 +23,7 @@ import ServicesSection from "@/components/organisms/Services";
 import PortfolioSection from "@/components/organisms/Porfolio";
 import ResourcesSection from "@/components/organisms/Resources";
 import ContactSection from "@/components/organisms/Contact";
+import Footer from "@/components/organisms/Footer";
 
 // Dummy Component for future scope
 const DummyComponent = ({ title }: { title: string }) => (
@@ -158,6 +159,9 @@ const Home: React.FC = () => {
             {item.component}
           </section>
         ))}
+        <section>
+          <Footer />
+        </section>
       </main>
     </>
   );

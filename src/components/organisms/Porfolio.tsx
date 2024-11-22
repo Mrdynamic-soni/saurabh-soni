@@ -28,30 +28,6 @@ const portfolioData = [
 ];
 
 const PortfolioSection = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   return (
     <div className="min-h-screen py-12 px-6 md:px-16 bg-gray-900 text-white">
       <h2 className="text-3xl font-bold text-gray-200 mb-6 border-b-4 border-blue-500 inline-block">

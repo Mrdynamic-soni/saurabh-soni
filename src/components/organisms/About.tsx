@@ -1,29 +1,6 @@
 import React from "react";
 
 const About: React.FC = () => {
-  const handleComposeMail = () => {
-    const mailto = "mailto:ssoni5930@gmail.com?subject=Hello&body=Hi there!";
-    const webLink =
-      "https://mail.google.com/mail/?view=cm&fs=1&to=ssoni5930@gmail.com&su=Hello&body=Hi there!";
-
-    if (
-      typeof navigator !== "undefined" &&
-      /android|iphone|ipad|ipod/i.test(navigator.userAgent)
-    ) {
-      window.location.href = mailto;
-    } else if (
-      navigator.userAgent.includes("Macintosh") ||
-      navigator.userAgent.includes("Mac OS")
-    ) {
-      window.open(mailto, "_blank");
-    } else if (navigator.userAgent.includes("Gmail")) {
-      window.open(webLink, "_self");
-    } else if (navigator?.platform === "MacIntel") {
-      window.open(webLink, "_self");
-    } else {
-      window.open(mailto, "_blank");
-    }
-  };
   return (
     <section className="h-min-screen py-12 px-6 md:px-16 bg-gray-50 flex items-center">
       <div className="max-w-7xl mx-auto w-full">

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaCalendar, FaMapPin } from "react-icons/fa";
 
 const educationData = [

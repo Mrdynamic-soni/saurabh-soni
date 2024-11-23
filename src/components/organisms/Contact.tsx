@@ -131,16 +131,27 @@ const Contact: React.FC = () => {
         const mobileLink = `instagram://user?username=${username}`;
         const webLink = `https://www.instagram.com/${username}/`;
 
-        if (
-          typeof navigator !== "undefined" &&
-          /android|iphone|ipad|ipod/i.test(navigator.userAgent)
-        ) {
-          window.location.href = mobileLink;
-          setTimeout(() => {
-            window.location.href = webLink;
-          }, 1000);
-        } else {
-          window.open(webLink, "_blank");
+        if (typeof navigator !== "undefined") {
+          const isMobile = /android|iphone|ipad|ipod/i.test(
+            navigator.userAgent
+          );
+
+          if (isMobile) {
+            // Try opening the Instagram app
+            const iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = mobileLink;
+            document.body.appendChild(iframe);
+
+            // Set a timeout to open the web link in case the app is not installed
+            setTimeout(() => {
+              document.body.removeChild(iframe); // Remove the iframe after timeout
+              window.location.href = webLink; // Fallback to the web link
+            }, 500); // You can adjust the timeout to suit your needs
+          } else {
+            // Open the web link directly on desktop
+            window.open(webLink, "_blank");
+          }
         }
       },
     },

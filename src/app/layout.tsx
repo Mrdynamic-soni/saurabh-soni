@@ -8,8 +8,11 @@ const roboto = Roboto({
 });
 
 export const metadata = {
-  title: "My Website",
-  description: "Built with Next.js Design System",
+  title: "Saurabh Soni",
+  description: "Personal Portfolio",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

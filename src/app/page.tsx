@@ -27,6 +27,7 @@ import Footer from "@/components/organisms/Footer";
 import SAURABH from "../app/assests/Images/saurabh.jpeg";
 import EducationSection from "@/components/organisms/Eduction";
 import { GiBookshelf } from "react-icons/gi";
+import Link from "next/link";
 
 const Home: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -198,12 +199,12 @@ const Home: React.FC = () => {
       </main>
 
       <div className="fixed bottom-6 right-6 z-50">
-        <button
-          onClick={() => scrollToSection("contact")}
+        <Link
+          href="/hireme"
           className="bg-gray-800 text-white border-2 border-gray-600 rounded-full w-16 h-16 flex items-center justify-center shadow-lg hover:bg-gray-700 focus:outline-none transition-transform duration-300 hover:scale-105"
         >
-          <span className="text-sm font-bold p-2">Hire me</span>
-        </button>
+          <span className="text-sm font-bold p-2 text-center">Hire me</span>
+        </Link>
       </div>
     </>
   );

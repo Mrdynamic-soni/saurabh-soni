@@ -1,3 +1,4 @@
+import { RESUME } from "@/utils/data";
 import { FaFileAlt, FaLink } from "react-icons/fa";
 
 const resourcesData = [
@@ -5,8 +6,7 @@ const resourcesData = [
     title: "Resume",
     description:
       "View or download my latest resume in PDF format. It highlights my skills, projects, and experience in software development, cloud solutions, and more.",
-    fileLink:
-      "https://drive.google.com/file/d/1cKK0etpe31bpkJi4u6gbYc_IbLnp4XGB/view?usp=sharing", // Replace with actual resume link
+    fileLink: RESUME, // Replace with actual resume link
     icon: <FaFileAlt size={20} />,
   },
   {

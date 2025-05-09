@@ -1,5 +1,6 @@
 import React from "react";
 import Footer from "@/components/organisms/Footer";
+import { RESUME } from "@/utils/data";
 
 const HireMe: React.FC = () => {
   return (
@@ -54,7 +55,7 @@ const HireMe: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
-              href="https://drive.google.com/file/d/1cKK0etpe31bpkJi4u6gbYc_IbLnp4XGB/view"
+              href={RESUME}
               className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
               target="_blank"
               download

@@ -36,7 +36,7 @@ const workExperienceData = [
   },
   {
     title: "Software Engineer Intern",
-    company: "Various Companies",
+    company: "Exora Labs",
     duration: "Feb 2023 - Jun 2023",
     location: "Remote",
     type: "Internship",

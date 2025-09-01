@@ -11,10 +11,26 @@ const portfolioData = [
     liveLink: "https://encase.ai/",
   },
   {
+    type: "tech",
+    title: "Pune Software Technologies",
+    description:
+      "Developed a promotional website for an EdTech institute offering courses in SAP, Web Development, and Cybersecurity. Built with Next.js, Tailwind CSS, and Zustand on the frontend, and Node.js, Express, PostgreSQL on the backend to deliver a responsive, dynamic, and scalable platform. The website highlights courses, programs, and institute information, providing an engaging experience for prospective students.",
+    technologies: [
+      "Next.js",
+      "Tailwind CSS",
+      "Zustand",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+    ],
+    githubLink: "#",
+    liveLink: "https://www.punesoftwaretechnologies.com/",
+  },
+  {
     type: "art",
     title: "Best Artwork",
     images: [
-      "https://scontent.fblr24-3.fna.fbcdn.net/v/t1.6435-9/118627984_1773821676106984_6208686349899203508_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=f727a1&_nc_ohc=OyZTZd1PHEgQ7kNvgFB4e7E&_nc_zt=23&_nc_ht=scontent.fblr24-3.fna&_nc_gid=AHMLZa4GNxyKe3JVtOHpN9X&oh=00_AYAnmL_iL72ig0Q3P7Mdn-5M59noO4yVi4DBtgXXiZJopQ&oe=67684B67",
+      "https://i.ibb.co/V03G4GXQ/Screenshot-from-2025-09-01-17-32-49.png",
     ],
     instagramLink: "https://www.instagram.com/kalaakaar_soni/",
     facebookLink: "https://www.facebook.com/saurabh.soni.3998/",
@@ -23,7 +39,7 @@ const portfolioData = [
     type: "photo",
     title: "Best Photograph",
     images: [
-      "https://scontent.fblr24-1.fna.fbcdn.net/v/t1.6435-9/43614517_1194733364015821_3418633799695597568_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=oZCGm3IN27IQ7kNvgEcGWyr&_nc_zt=23&_nc_ht=scontent.fblr24-1.fna&_nc_gid=ABpvPLi8bD44Ev14665A3_p&oh=00_AYAWolx7qIW84n1U2l1gOExJxqWaPo6lakWxSJ59TcQ25w&oe=67684B56",
+      "https://i.ibb.co/DH3Csfd9/Screenshot-from-2025-09-01-17-38-36.png",
     ],
     instagramLink: "https://www.instagram.com/kalaakaar_soni/",
     facebookLink: "https://www.facebook.com/saurabh.soni.3998/",

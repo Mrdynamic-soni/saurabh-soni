@@ -1,20 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import {
-  FaHome,
-  FaRegFilePdf,
-  FaRegImages,
-  FaLaptopCode,
-} from "react-icons/fa";
-import { IoPersonCircleSharp } from "react-icons/io5";
-import { FaServer } from "react-icons/fa6";
-import { LuContact2 } from "react-icons/lu";
-import Image from "next/image";
-import { theme } from "@/utils/theme";
-import { HiMenuAlt3 } from "react-icons/hi";
-import { IoCloseSharp } from "react-icons/io5";
-import Heading from "@/components/typography/Heading";
+import { motion } from "framer-motion";
+import Navigation from "@/components/organisms/Navigation";
 import HeroSection from "@/components/organisms/Herosection";
 import About from "@/components/organisms/About";
 import Skills from "@/components/organisms/Skills";
@@ -24,85 +12,47 @@ import PortfolioSection from "@/components/organisms/Porfolio";
 import ResourcesSection from "@/components/organisms/Resources";
 import ContactSection from "@/components/organisms/Contact";
 import Footer from "@/components/organisms/Footer";
-import SAURABH from "../app/assests/Images/saurabh.jpeg";
 import EducationSection from "@/components/organisms/Eduction";
-import { GiBookshelf } from "react-icons/gi";
-import Link from "next/link";
+
+interface SectionItem {
+  id: string;
+  component: React.ReactNode;
+}
 
 const Home: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("home");
   const isClickingRef = useRef(false);
 
-  const menuItems = [
-    {
-      id: "home",
-      label: "Home",
-      icon: <FaHome />,
-      component: <HeroSection />,
-    },
-    {
-      id: "about",
-      label: "About",
-      icon: <IoPersonCircleSharp />,
-      component: <About />,
-    },
-    {
-      id: "workexperience",
-      label: "Work Experience",
-      icon: <FaRegImages />,
-      component: <WorkExperienceSection />,
-    },
-    {
-      id: "education",
-      label: "Education",
-      icon: <GiBookshelf />,
-      component: <EducationSection />,
-    },
-    {
-      id: "skills",
-      label: "Skills",
-      icon: <FaLaptopCode />,
-      component: <Skills />,
-    },
-    {
-      id: "services",
-      label: "Services",
-      icon: <FaServer />,
-      component: <ServicesSection />,
-    },
-    {
-      id: "portfolio",
-      label: "Portfolio",
-      icon: <FaRegImages />,
-      component: <PortfolioSection />,
-    },
-    {
-      id: "resources",
-      label: "Resources",
-      icon: <FaRegFilePdf />,
-      component: <ResourcesSection />,
-    },
-    {
-      id: "contact",
-      label: "Contact",
-      icon: <LuContact2 />,
-      component: <ContactSection />,
-    },
+  const sections: SectionItem[] = [
+    { id: "home", component: <HeroSection /> },
+    { id: "about", component: <About /> },
+    { id: "workexperience", component: <WorkExperienceSection /> },
+    { id: "education", component: <EducationSection /> },
+    { id: "skills", component: <Skills /> },
+    { id: "services", component: <ServicesSection /> },
+    { id: "portfolio", component: <PortfolioSection /> },
+    { id: "resources", component: <ResourcesSection /> },
+    { id: "contact", component: <ContactSection /> },
   ];
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);
     isClickingRef.current = true;
-    const section = document.getElementById(id || "home");
+    const section = document.getElementById(id);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      const offset = 80; // Account for fixed header
+      const elementPosition = section.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
 
       setTimeout(() => {
         isClickingRef.current = false;
-      }, 500);
+      }, 1000);
     }
-    setIsMenuOpen(false);
   };
 
   useEffect(() => {
@@ -110,103 +60,60 @@ const Home: React.FC = () => {
       (entries) => {
         if (!isClickingRef.current) {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
               setActiveSection(entry.target.id);
             }
           });
         }
       },
       {
-        threshold: 0.5,
+        threshold: [0.3, 0.5, 0.7],
+        rootMargin: "-80px 0px -80px 0px",
       }
     );
 
-    menuItems.forEach((item) => {
-      const section = document.getElementById(item.id);
-      if (section) observer.observe(section);
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (element) observer.observe(element);
     });
 
     return () => observer.disconnect();
-  }, [menuItems]);
+  }, [sections]);
 
   return (
-    <>
-      <div className="fixed top-0 left-0 z-50 w-full bg-gray-900 text-white flex items-center px-4 py-3 md:hidden">
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-2xl focus:outline-none"
-        >
-          {isMenuOpen ? <IoCloseSharp /> : <HiMenuAlt3 />}
-        </button>
-        <Heading
-          heading="Saurabh Soni"
-          className="text-xl font-bold text-center"
-        />
-      </div>
+    <div className="min-h-screen bg-dark text-light">
+      {/* Navigation */}
+      <Navigation 
+        activeSection={activeSection} 
+        onSectionClick={scrollToSection} 
+      />
 
-      <nav
-        className={`fixed left-0 top-0 h-screen w-52 flex flex-col items-center bg-gray-900 text-white py-4 space-y-4 shadow-lg  transform ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 md:translate-x-0 z-40 pt-16 overflow-y-auto overflow-x-hidden`}
-        style={{ maxHeight: "100vh" }}
-      >
-        <Image
-          src={SAURABH}
-          alt="profil"
-          width={150}
-          height={150}
-          className="rounded-full mx-6 border-8"
-          style={{
-            borderColor: theme?.colors?.surface?.secondary,
-          }}
-        />
-        <Heading heading="Saurabh Soni" className="text-2xl font-bold" />
-        {menuItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => scrollToSection(item.id)}
-            className={`flex gap-x-2 items-center justify-start py-3 px-4 w-full focus:outline-none group ${
-              activeSection === item.id ? "bg-gray-700 " : "text-gray-500"
-            }`}
+      {/* Main Content */}
+      <main className="md:ml-64">
+        {sections.map((section, index) => (
+          <motion.section
+            key={section.id}
+            id={section.id}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
           >
-            <span
-              className={`text-lg group-hover:text-white  transition-colors duration-300 ${
-                activeSection === item.id ? "text-white" : "text-gray-500"
-              }`}
-            >
-              {item.icon}
-            </span>
-            <span
-              className={`text-xs group-hover:text-white  transition-colors duration-300 ${
-                activeSection === item.id ? "text-white" : "text-gray-500"
-              }`}
-            >
-              {item.label}
-            </span>
-          </button>
+            {section.component}
+          </motion.section>
         ))}
-      </nav>
-
-      <main className="ml-0 md:ml-52">
-        {menuItems.map((item) => (
-          <section key={item.id} id={item.id}>
-            {item.component}
-          </section>
-        ))}
-        <section>
-          <Footer />
-        </section>
-      </main>
-
-      <div className="fixed bottom-6 right-6 z-50">
-        <Link
-          href="/hireme"
-          className="bg-gray-800 text-white border-2 border-gray-600 rounded-full w-16 h-16 flex items-center justify-center shadow-lg hover:bg-gray-700 focus:outline-none transition-transform duration-300 hover:scale-105"
+        
+        {/* Footer */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <span className="text-sm font-bold p-2 text-center">Hire me</span>
-        </Link>
-      </div>
-    </>
+          <Footer />
+        </motion.section>
+      </main>
+    </div>
   );
 };
 

@@ -1,5 +1,9 @@
-import { useState } from "react";
-import { FaCalendar, FaMapPin } from "react-icons/fa";
+"use client";
+
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { FaCalendar, FaMapPin, FaBriefcase, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const workExperienceData = [
   {
@@ -8,12 +12,13 @@ const workExperienceData = [
     duration: "Jul 2024 - Present",
     location: "Bengaluru, Karnataka, India",
     type: "Full-time",
+    color: "from-primary to-accent",
     achievements: [
       "Leveraged JavaScript and Python to develop and automate software solutions, significantly enhancing team productivity and reducing repetitive tasks.",
       "Contributed to system architecture and implemented scalable solutions using MySQL and AWS, ensuring optimal performance and security in software applications.",
       "Played a key role in fostering DevOps practices, streamlining CI/CD pipelines, and implementing automated testing, leading to improved software quality and workflow efficiency.",
     ],
-    skills: ["Engineering", "Software Design"],
+    skills: ["JavaScript", "Python", "MySQL", "AWS", "DevOps"],
   },
   {
     title: "Software Engineer",
@@ -21,18 +26,13 @@ const workExperienceData = [
     duration: "Jun 2023 - Jul 2024",
     location: "India",
     type: "Full-time",
+    color: "from-secondary to-primary",
     achievements: [
       "Spearheaded 90% of the React Native app development, focusing on optimizing performance through engaging animations.",
       "Implemented a secure Multi-Login System from scratch, integrating backend and API seamlessly.",
       "Engineered an automated mailer system, delivering dynamic content emails during user onboarding.",
     ],
-    skills: [
-      "MERN Stack",
-      "React Native",
-      "AWS Lambda",
-      "Express.js",
-      "Node.js",
-    ],
+    skills: ["React Native", "MERN Stack", "AWS Lambda", "Express.js", "Node.js"],
   },
   {
     title: "Software Engineer Intern",
@@ -40,6 +40,7 @@ const workExperienceData = [
     duration: "Feb 2023 - Jun 2023",
     location: "Remote",
     type: "Internship",
+    color: "from-accent to-secondary",
     achievements: [
       "Developed user interfaces utilizing HTML5, CSS3, JavaScript, Nest, Next, PostgreSQL.",
       "Modified existing software to correct errors and improve performance.",
@@ -53,213 +54,210 @@ const workExperienceData = [
     duration: "Jul 2021 - Jun 2023",
     location: "Remote",
     type: "Part-time",
+    color: "from-primary to-secondary",
     achievements: [
       "Worked on training students for Python programming and development, mentoring them on project development.",
       "Trained more than 100 students, completing over 600 hours of training.",
       "Taught topics including Python, OOPs, Tkinter, SQL, sci-kit-learn, machine learning, and more.",
     ],
-    skills: ["Python", "SQL", "Jupyter", "Tkinter"],
-  },
-  {
-    title: "Full-stack Developer",
-    company: "Exora Labs",
-    duration: "Feb 2023 - Apr 2023",
-    location: "Remote",
-    type: "Internship",
-    achievements: [
-      "Collaborated with other developers to ensure code quality and functionality.",
-      "Developed user interfaces utilizing HTML5, CSS3, JavaScript, Nest, Next, PostgreSQL.",
-      "Modified existing software to correct errors and adapt it to new hardware.",
-    ],
-    skills: [
-      "React.js",
-      "NestJS",
-      "Express.js",
-      "Node.js",
-      "JavaScript",
-      "Bootstrap",
-      "Next.js",
-    ],
-  },
-  {
-    title: "Frontend Developer",
-    company: "RMgX Technologies LLP",
-    duration: "Nov 2022 - Jan 2023",
-    location: "Remote",
-    type: "Internship",
-    achievements: [
-      "Developed 65% of the front-end code, contributing to multiple projects for UI creation and code updates.",
-      "Integrated 50% of APIs using Axios for seamless front-end and back-end communication.",
-      "Boosted project speed by 35% through strategic optimizations.",
-    ],
-    skills: [
-      "React.js",
-      "Material-UI",
-      "HTML5",
-      "JavaScript",
-      "Bootstrap",
-      "CSS",
-      "Next.js",
-    ],
-  },
-  {
-    title: "Full-stack Developer",
-    company: "Matrix Nodes",
-    duration: "May 2022 - Aug 2022",
-    location: "Remote",
-    type: "Internship",
-    achievements: [
-      "Developed backend APIs with Node.js, Express.js, MongoDB, and Mongoose.",
-      "Developed front-end features using React.js, HTML, and CSS.",
-      "Integrated backend APIs with frontend for live server interactions.",
-    ],
-    skills: ["React.js", "Express.js", "Node.js", "JavaScript", "MongoDB"],
-  },
-  {
-    title: "Internet of Things Research Intern",
-    company: "Codebugged",
-    duration: "Jan 2020 - Jun 2021",
-    location: "Remote",
-    type: "Internship",
-    achievements: [
-      "Worked on the development of wireless sensor nodes capable of reading environmental data and sending it to the cloud.",
-      "Used Flask for web development and MySQL for storing data.",
-      "Implemented real-time data visualization and plotting.",
-    ],
-    skills: ["Web Development", "Arduino", "Data Visualization", "Flask"],
-  },
-  {
-    title: "Campus Ambassador",
-    company: "Unacademy",
-    duration: "Dec 2020 - Feb 2021",
-    location: "Remote",
-    type: "Internship",
-    achievements: [
-      "Promoted Unacademy courses and helped with community engagement.",
-    ],
-    skills: ["Marketing", "Community Engagement"],
-  },
-  {
-    title: "Campus Ambassador",
-    company: "INDIAN ROBOTICS COMMUNITY",
-    duration: "Oct 2020 - Dec 2020",
-    location: "Remote",
-    type: "Internship",
-    achievements: [
-      "Organized online events such as Web-Expo for the robotics community.",
-    ],
-    skills: ["Event Management", "Community Building"],
-  },
-  {
-    title: "Instructor",
-    company: "Edu-Vitae Services",
-    duration: "Jun 2020",
-    location: "Remote",
-    type: "Internship",
-    achievements: [
-      "Taught interfacing with Arduino, Raspberry Pi, and cloud technologies.",
-    ],
-    skills: ["IoT", "Robotics", "Arduino", "Raspberry Pi"],
-  },
-  {
-    title: "Subject Matter Expert",
-    company: "Instasolv",
-    duration: "Oct 2019 - Mar 2020",
-    location: "Remote",
-    type: "Freelance",
-    achievements: [
-      "Provided doubt clearing services and reviewed answers for students.",
-    ],
-    skills: ["Education", "Subject Matter Expertise"],
+    skills: ["Python", "SQL", "Machine Learning", "Tkinter"],
   },
 ];
 
 const WorkExperienceSection = () => {
-  const [expanded, setExpanded] = useState(false); // Track if the "Show More" button is clicked
+  const [ref, inView] = useInView({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
 
-  const experiencesToShow = expanded
-    ? workExperienceData
-    : workExperienceData.slice(0, 3); // Show all or the first 3 experiences
+  const [expanded, setExpanded] = useState(false);
+  const experiencesToShow = expanded ? workExperienceData : workExperienceData.slice(0, 3);
 
   return (
-    <div className="min-h-screen py-12  px-6 md:px-16">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-blue-500 inline-block dark:text-white">
-        Work Experience
-      </h2>
+    <section className="min-h-screen py-20 px-4 bg-dark relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 cyber-grid opacity-5" />
+      <div className="absolute top-20 right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
 
-      <div className="space-y-6">
-        {experiencesToShow.map((experience, index) => (
-          <div
-            key={`${experience.company}-${index}`}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-300 hover:shadow-lg"
+      <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl md:text-6xl font-space font-bold mb-6">
+            <span className="text-light">Work </span>
+            <span className="gradient-text">Experience</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
+          <p className="text-muted text-lg mt-6 max-w-2xl mx-auto">
+            Professional journey building innovative solutions and leading technical teams
+          </p>
+        </motion.div>
+
+        {/* Experience Timeline */}
+        <div className="relative">
+          {/* Timeline Line */}
+          <div className="absolute left-8 md:left-1/2 md:transform md:-translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-secondary to-accent rounded-full opacity-30" />
+
+          <div className="space-y-12">
+            <AnimatePresence>
+              {experiencesToShow.map((experience, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -50 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className={`flex items-start ${
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  } gap-8`}
+                >
+                  {/* Content Card */}
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="w-full md:w-5/12 glass-effect rounded-xl p-6 hover:border-primary/50 transition-all duration-300 group relative overflow-hidden ml-16 md:ml-0"
+                  >
+                    {/* Gradient Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${experience.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
+                    
+                    <div className="relative z-10">
+                      {/* Header */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className={`px-3 py-1 text-xs rounded-full bg-gradient-to-r ${experience.color} text-white font-medium`}>
+                              {experience.type}
+                            </span>
+                          </div>
+                          <h3 className="text-xl font-space font-bold text-light group-hover:gradient-text transition-all mb-2">
+                            {experience.title}
+                          </h3>
+                          <p className="text-primary font-semibold text-lg">
+                            {experience.company}
+                          </p>
+                        </div>
+                        <motion.div
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.5 }}
+                          className={`p-3 rounded-lg bg-gradient-to-br ${experience.color} text-white`}
+                        >
+                          <FaBriefcase size={20} />
+                        </motion.div>
+                      </div>
+
+                      {/* Details */}
+                      <div className="space-y-3 mb-6">
+                        <div className="flex items-center gap-3 text-muted">
+                          <FaCalendar size={14} className="text-primary" />
+                          <span>{experience.duration}</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-muted">
+                          <FaMapPin size={14} className="text-primary" />
+                          <span>{experience.location}</span>
+                        </div>
+                      </div>
+
+                      {/* Achievements */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-primary mb-3">Key Achievements</h4>
+                        <ul className="space-y-2">
+                          {experience.achievements.map((achievement, i) => (
+                            <li key={i} className="text-muted text-sm leading-relaxed flex items-start gap-2">
+                              <span className="text-primary mt-1">•</span>
+                              <span>{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Skills */}
+                      <div>
+                        <h4 className="font-semibold text-primary mb-3">Technologies</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {experience.skills.map((skill, i) => (
+                            <motion.span
+                              key={i}
+                              whileHover={{ scale: 1.1 }}
+                              className="px-3 py-1 text-xs rounded-full bg-primary/20 text-primary border border-primary/30 hover:bg-primary hover:text-white transition-all cursor-default"
+                            >
+                              {skill}
+                            </motion.span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Timeline Node */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={inView ? { scale: 1 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                    className="absolute left-7 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 bg-gradient-to-r from-primary to-secondary rounded-full border-4 border-dark shadow-lg z-10"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse" />
+                  </motion.div>
+
+                  {/* Spacer for opposite side */}
+                  <div className="hidden md:block w-5/12" />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Show More/Less Button */}
+        {workExperienceData.length > 3 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="text-center mt-12"
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-                  {experience.title}
-                </h3>
-                <p className="text-lg text-blue-600 dark:text-blue-400">
-                  {experience.company}
-                </p>
-              </div>
+            <motion.button
+              onClick={() => setExpanded(!expanded)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 mx-auto px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300"
+            >
+              <span>{expanded ? "Show Less" : "Show More"}</span>
+              {expanded ? <FaChevronUp /> : <FaChevronDown />}
+            </motion.button>
+          </motion.div>
+        )}
 
-              <div className="flex flex-col sm:flex-row gap-2 mt-2 md:mt-0">
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
-                  <FaCalendar size={16} className="mr-2" />
-                  <span className="text-sm">{experience.duration}</span>
-                </div>
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
-                  <FaMapPin size={16} className="mr-2" />
-                  <span className="text-sm">{experience.location}</span>
-                </div>
-              </div>
+        {/* Experience Summary */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="mt-20 text-center"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="glass-effect rounded-xl p-6">
+              <div className="text-3xl font-bold gradient-text mb-2">3+</div>
+              <div className="text-muted">Years Experience</div>
             </div>
-
-            {/* Expanded content for each experience */}
-            <div>
-              {experience.achievements.length > 0 && (
-                <div className="mt-4">
-                  <h4 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
-                    Key Achievements
-                  </h4>
-                  <ul className="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
-                    {experience.achievements.map((achievement, i) => (
-                      <li key={i} className="text-sm">
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <div className="mt-4">
-                <h4 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
-                  Skills
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {experience.skills.map((skill, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
+            <div className="glass-effect rounded-xl p-6">
+              <div className="text-3xl font-bold gradient-text mb-2">4+</div>
+              <div className="text-muted">Companies</div>
+            </div>
+            <div className="glass-effect rounded-xl p-6">
+              <div className="text-3xl font-bold gradient-text mb-2">100+</div>
+              <div className="text-muted">Students Mentored</div>
+            </div>
+            <div className="glass-effect rounded-xl p-6">
+              <div className="text-3xl font-bold gradient-text mb-2">600+</div>
+              <div className="text-muted">Training Hours</div>
             </div>
           </div>
-        ))}
-
-        {/* Show More / Show Less button */}
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="mt-4 text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline focus:outline-none"
-        >
-          {expanded ? "Show Less" : "Show More"}
-        </button>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

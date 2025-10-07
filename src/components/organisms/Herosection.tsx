@@ -1,7 +1,27 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import React, { useState, useEffect, Suspense } from "react";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Me from "../../app/assests/Images/Me.jpg";
-import Heading from "../typography/Heading";
+
+// Dynamically import Lottie to avoid SSR issues
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
+// Simple fallback animation data (you can replace with actual Lottie JSON)
+const heroAnimationData = {
+  v: "5.7.4",
+  fr: 30,
+  ip: 0,
+  op: 90,
+  w: 500,
+  h: 500,
+  nm: "Hero Animation",
+  ddd: 0,
+  assets: [],
+  layers: []
+};
 
 const HeroSection: React.FC = () => {
   const [currentText, setCurrentText] = useState("");
@@ -9,7 +29,7 @@ const HeroSection: React.FC = () => {
   const [loopIndex, setLoopIndex] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
 
-  const roles = ["Developer", "Mentor", "Trainer", "Entrepreneur", "Artist"];
+  const roles = ["Full Stack Developer", "Tech Innovator", "Problem Solver", "Digital Creator", "Code Architect"];
 
   useEffect(() => {
     const handleTyping = () => {
@@ -21,13 +41,13 @@ const HeroSection: React.FC = () => {
       setCurrentText(updatedText);
 
       if (!isDeleting && updatedText === currentRole) {
-        setTimeout(() => setIsDeleting(true), 1000);
+        setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && updatedText === "") {
         setIsDeleting(false);
         setLoopIndex(loopIndex + 1);
       }
 
-      setTypingSpeed(isDeleting ? 100 : 150);
+      setTypingSpeed(isDeleting ? 50 : 100);
     };
 
     const timer = setTimeout(handleTyping, typingSpeed);
@@ -35,51 +55,183 @@ const HeroSection: React.FC = () => {
   }, [currentText, isDeleting, loopIndex, typingSpeed, roles]);
 
   return (
-    <div className="relative h-screen bg-gray-900">
-      <Image
-        src={Me}
-        alt="Background Image"
-        className="object-cover w-full h-full opacity-30"
-        priority
-      />
-      <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 text-white px-4 text-center">
-        <Heading
-          heading="Saurabh Soni"
-          className="text-4xl md:text-6xl text-white font-bold"
-        />
-
-        <div className="flex flex-wrap justify-center md:justify-start items-center gap-x-2">
-          <Heading
-            heading="I'm a"
-            className="text-3xl md:text-4xl text-white font-semibold"
+    <section className="relative min-h-screen bg-dark overflow-hidden">
+      {/* Animated Background Grid */}
+      <div className="absolute inset-0 cyber-grid opacity-20" />
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
+      
+      {/* Floating Particles */}
+      <div className="absolute inset-0">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-accent rounded-full opacity-30"
+            animate={{
+              y: [-20, -100, -20],
+              x: [0, 30, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 4 + i * 0.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
           />
-          <div className="text-3xl md:text-4xl font-medium text-white">
-            <span className="text-sky-600 font-bold border-b-2 border-sky-600">
-              {currentText}
-            </span>
-            <span className="animate-blink">|</span>
-          </div>
+        ))}
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4 h-screen flex items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="space-y-4"
+            >
+              <h1 className="text-5xl md:text-7xl font-space font-bold">
+                <span className="gradient-text">Saurabh</span>
+                <br />
+                <span className="text-light">Soni</span>
+              </h1>
+              
+              <div className="flex items-center gap-3 text-2xl md:text-3xl">
+                <span className="text-muted font-medium">I'm a</span>
+                <div className="relative">
+                  <span className="gradient-text font-semibold">
+                    {currentText}
+                  </span>
+                  <motion.span
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                    className="text-primary ml-1"
+                  >
+                    |
+                  </motion.span>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="text-lg text-muted max-w-lg leading-relaxed"
+            >
+              Crafting innovative digital experiences with cutting-edge technology. 
+              Passionate about building scalable solutions that make a difference.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="flex gap-4"
+            >
+              <button 
+                onClick={() => {
+                  const portfolioSection = document.getElementById('portfolio');
+                  if (portfolioSection) {
+                    portfolioSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:scale-105 transition-transform duration-300 neon-glow"
+              >
+                View My Work
+              </button>
+              <button 
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="px-8 py-4 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-all duration-300"
+              >
+                Get In Touch
+              </button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Content - Profile Image with 3D Effect */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative flex justify-center lg:justify-end"
+          >
+            <div className="relative">
+              {/* Glowing Ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 w-80 h-80 rounded-full border-2 border-primary/30 border-dashed"
+              />
+              
+              {/* Profile Image */}
+              <motion.div
+                animate={{ y: [-10, 10, -10] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="relative w-72 h-72 rounded-full overflow-hidden glass-effect p-2"
+              >
+                <Image
+                  src={Me}
+                  alt="Saurabh Soni - Full Stack Developer"
+                  className="w-full h-full object-cover rounded-full"
+                  priority
+                  width={300}
+                  height={300}
+                />
+              </motion.div>
+              
+              {/* Floating Elements */}
+              <motion.div
+                animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+                transition={{ duration: 8, repeat: Infinity }}
+                className="absolute -top-4 -right-4 w-8 h-8 bg-accent rounded-full opacity-80"
+              />
+              <motion.div
+                animate={{ rotate: -360, scale: [1, 1.1, 1] }}
+                transition={{ duration: 6, repeat: Infinity }}
+                className="absolute -bottom-4 -left-4 w-6 h-6 bg-secondary rounded-full opacity-80"
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes blink {
-          0% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 1;
-          }
-        }
-
-        .animate-blink {
-          animation: blink 1s step-start infinite;
-        }
-      `}</style>
-    </div>
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="w-6 h-10 border-2 border-primary rounded-full flex justify-center"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-1 h-3 bg-primary rounded-full mt-2"
+          />
+        </motion.div>
+      </motion.div>
+    </section>
   );
 };
 

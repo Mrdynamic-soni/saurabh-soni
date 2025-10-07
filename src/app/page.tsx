@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import Navigation from "@/components/organisms/Navigation";
 import HeroSection from "@/components/organisms/Herosection";
@@ -23,7 +23,7 @@ const Home: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("home");
   const isClickingRef = useRef(false);
 
-  const sections: SectionItem[] = [
+  const sections: SectionItem[] = useMemo(() => [
     { id: "home", component: <HeroSection /> },
     { id: "about", component: <About /> },
     { id: "workexperience", component: <WorkExperienceSection /> },
@@ -33,7 +33,7 @@ const Home: React.FC = () => {
     { id: "portfolio", component: <PortfolioSection /> },
     { id: "resources", component: <ResourcesSection /> },
     { id: "contact", component: <ContactSection /> },
-  ];
+  ], []);
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);

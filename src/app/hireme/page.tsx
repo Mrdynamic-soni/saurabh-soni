@@ -67,7 +67,7 @@ const HireMe: React.FC = () => {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-center text-muted text-lg mt-4"
           >
-            Let's build something amazing together!
+            Let&apos;s build something amazing together!
           </motion.p>
         </div>
       </motion.header>
@@ -145,12 +145,12 @@ const HireMe: React.FC = () => {
         >
           <div className="glass-effect rounded-2xl p-12 max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-space font-bold mb-6">
-              <span className="text-light">Let's </span>
+              <span className="text-light">Let&apos;s </span>
               <span className="gradient-text">Connect</span>
             </h2>
             <p className="text-muted text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
-              Ready to take your project to the next level? I'm here to help you build innovative solutions 
-              that make a real impact. Let's discuss your vision and bring it to life.
+              Ready to take your project to the next level? I&apos;m here to help you build innovative solutions 
+              that make a real impact. Let&apos;s discuss your vision and bring it to life.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-6">

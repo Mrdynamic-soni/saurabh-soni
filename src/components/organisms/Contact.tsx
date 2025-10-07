@@ -260,7 +260,7 @@ const Contact: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
           <p className="text-muted text-lg mt-6 max-w-2xl mx-auto">
-            Ready to bring your ideas to life? Let's connect and create something amazing together.
+            Ready to bring your ideas to life? Let&apos;s connect and create something amazing together.
           </p>
         </motion.div>
 
@@ -322,7 +322,7 @@ const Contact: React.FC = () => {
                 Send a Message
               </h3>
               <p className="text-muted text-lg mb-8">
-                Have a project in mind? Drop me a message and let's discuss how we can work together.
+                Have a project in mind? Drop me a message and let&apos;s discuss how we can work together.
               </p>
             </div>
 

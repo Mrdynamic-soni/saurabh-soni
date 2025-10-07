@@ -18,7 +18,7 @@ export const theme = {
     },
   },
   fonts: {
-    heading: 'Space Grotesk',
-    body: 'Inter',
+    heading: 'system-ui',
+    body: 'system-ui',
   },
 };

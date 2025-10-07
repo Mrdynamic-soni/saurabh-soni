@@ -1,27 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Me from "../../app/assests/Images/Me.jpg";
-
-// Dynamically import Lottie to avoid SSR issues
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-
-// Simple fallback animation data (you can replace with actual Lottie JSON)
-const heroAnimationData = {
-  v: "5.7.4",
-  fr: 30,
-  ip: 0,
-  op: 90,
-  w: 500,
-  h: 500,
-  nm: "Hero Animation",
-  ddd: 0,
-  assets: [],
-  layers: []
-};
 
 const HeroSection: React.FC = () => {
   const [currentText, setCurrentText] = useState("");
@@ -29,7 +11,7 @@ const HeroSection: React.FC = () => {
   const [loopIndex, setLoopIndex] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
 
-  const roles = ["Full Stack Developer", "Tech Innovator", "Problem Solver", "Digital Creator", "Code Architect"];
+  const roles = useMemo(() => ["Full Stack Developer", "Tech Innovator", "Problem Solver", "Digital Creator", "Code Architect"], []);
 
   useEffect(() => {
     const handleTyping = () => {
@@ -108,7 +90,7 @@ const HeroSection: React.FC = () => {
               </h1>
               
               <div className="flex items-center gap-3 text-2xl md:text-3xl">
-                <span className="text-muted font-medium">I'm a</span>
+                <span className="text-muted font-medium">I&apos;m a</span>
                 <div className="relative">
                   <span className="gradient-text font-semibold">
                     {currentText}

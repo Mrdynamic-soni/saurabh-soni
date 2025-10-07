@@ -100,13 +100,13 @@ const About: React.FC = () => {
                 <span className="gradient-text"> Tech Innovator</span>
               </h3>
               <p className="text-muted text-lg leading-relaxed mb-6">
-                I'm Saurabh Soni, a passionate full-stack developer with expertise in modern web technologies. 
+                I&apos;m Saurabh Soni, a passionate full-stack developer with expertise in modern web technologies. 
                 I specialize in React, Next.js, and scalable cloud solutions, with a proven track record of 
                 delivering innovative projects and mentoring aspiring developers.
               </p>
               <p className="text-muted text-lg leading-relaxed">
                 Passionate about leveraging cutting-edge technology to create impactful solutions that push 
-                the boundaries of what's possible in the digital realm.
+                the boundaries of what&apos;s possible in the digital realm.
               </p>
             </div>
 

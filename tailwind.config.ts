@@ -18,8 +18,8 @@ export default {
         muted: '#CBD5E1',
       },
       fontFamily: {
-        'space': ['Space Grotesk', 'sans-serif'],
-        'inter': ['Inter', 'sans-serif'],
+        'space': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        'inter': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

@@ -40,7 +40,8 @@ const Home: React.FC = () => {
     isClickingRef.current = true;
     const section = document.getElementById(id);
     if (section) {
-      const offset = 80; // Account for fixed header
+      const isMobile = window.innerWidth < 768;
+      const offset = isMobile ? 70 : 0; // Account for mobile header
       const elementPosition = section.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -89,7 +90,7 @@ const Home: React.FC = () => {
       />
 
       {/* Main Content */}
-      <main className="md:ml-64 pt-16 md:pt-0">
+      <main className="md:ml-64">
         {sections.map((section, index) => (
           <motion.section
             key={section.id}

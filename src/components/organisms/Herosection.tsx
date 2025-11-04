@@ -37,7 +37,7 @@ const HeroSection: React.FC = () => {
   }, [currentText, isDeleting, loopIndex, typingSpeed, roles]);
 
   return (
-    <section className="relative min-h-screen bg-dark overflow-hidden">
+    <section className="relative min-h-screen bg-dark overflow-hidden pt-16 md:pt-0">
       {/* Animated Background Grid */}
       <div className="absolute inset-0 cyber-grid opacity-20" />
       

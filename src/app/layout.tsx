@@ -2,6 +2,7 @@ import "./globals.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://saurabh.vercel.app'),
   title: {
     default: "Saurabh Soni - Full Stack Developer & Tech Innovator",
     template: "%s | Saurabh Soni",
@@ -10,6 +11,9 @@ export const metadata: Metadata = {
   keywords: ["Full Stack Developer", "React", "Next.js", "TypeScript", "Web Development", "Software Engineer", "Tech Innovation"],
   authors: [{ name: "Saurabh Soni" }],
   creator: "Saurabh Soni",
+  alternates: {
+    canonical: 'https://saurabh.vercel.app',
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -36,6 +40,9 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+  },
+  verification: {
+    google: 'your-google-verification-code',
   },
 };
 

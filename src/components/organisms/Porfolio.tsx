@@ -9,6 +9,24 @@ import Image from "next/image";
 const portfolioData = [
   {
     type: "tech",
+    title: "SkillClock - Productivity & Time Tracking App",
+    description:
+      "A full-stack productivity application designed to help users track their skill development hours, set goals, and boost productivity through intelligent time management. Built with AI assistance, featuring real-time sync, smart analytics, and cross-device accessibility.",
+    technologies: [
+      "React 18",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Supabase",
+      "Zustand",
+      "Framer Motion",
+      "Recharts",
+    ],
+    githubLink: "https://github.com/Mrdynamic-soni/skill-clock",
+    liveLink: "https://skill-clock.vercel.app/",
+  },
+  {
+    type: "tech",
     title: "Zelvyn",
     description:
       "A platform connecting artists with clients, allowing artists to showcase their portfolios and get freelance opportunities. I am building Zelvyn as a mediator platform with a scalable web app, multi-language support, and easy onboarding for both artists and clients.",

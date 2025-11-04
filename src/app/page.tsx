@@ -89,7 +89,7 @@ const Home: React.FC = () => {
       />
 
       {/* Main Content */}
-      <main className="md:ml-64">
+      <main className="md:ml-64 pt-16 md:pt-0">
         {sections.map((section, index) => (
           <motion.section
             key={section.id}

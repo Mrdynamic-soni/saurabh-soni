@@ -66,7 +66,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionClick }
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-50 md:hidden transition-all duration-300 ${
-          scrolled ? "glass-effect" : "bg-transparent"
+          scrolled ? "glass-effect" : "bg-dark/80 backdrop-blur-sm"
         }`}
       >
         <div className="flex items-center justify-between px-4 py-3">
@@ -148,7 +148,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionClick }
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-50 md:hidden"
           >
             <div className="absolute inset-0 bg-dark/90 backdrop-blur-sm" />
             <motion.div
